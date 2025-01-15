@@ -1,0 +1,20 @@
+---
+- name: Update the package list
+  ansible.builtin.apt:
+    update_cache: yes
+
+- name: Install required packages
+  ansible.builtin.apt:
+    name:
+      - ansible
+      - ansible-core
+      - python3
+      - neovim
+      - unzip
+      - zsh
+      - telnet
+      - wget
+      - tmux
+      - curl
+      - git
+    state: present

@@ -1,0 +1,8 @@
+---
+- name: Do Patching
+  hosts: localhost
+  become: true
+  become_user: root
+  roles:
+    - roles/patching
+
