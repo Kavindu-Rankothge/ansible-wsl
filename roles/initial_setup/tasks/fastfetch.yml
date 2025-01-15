@@ -1,0 +1,43 @@
+---
+- name: Install dependencies
+  ansible.builtin.apt:
+    name:
+      - git
+      - build-essential
+      - cmake
+      - libpci-dev
+      - libvulkan-dev
+    state: present
+
+- name: Clone Fastfetch repository
+  ansible.builtin.git:
+    repo: 'https://github.com/LinusDierheimer/fastfetch.git'
+    dest: /tmp/fastfetch
+
+- name: Create build directory
+  ansible.builtin.file:
+    path: /tmp/fastfetch/build
+    state: directory
+
+- name: Run cmake
+  ansible.builtin.command:
+    cmd: cmake ..
+  args:
+    chdir: /tmp/fastfetch/build
+
+- name: Build Fastfetch
+  ansible.builtin.command:
+    cmd: make
+  args:
+    chdir: /tmp/fastfetch/build
+
+- name: Install Fastfetch
+  ansible.builtin.command:
+    cmd: make install
+  args:
+    chdir: /tmp/fastfetch/build
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: /tmp/fastfetch
+    state: absent

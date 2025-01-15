@@ -1,0 +1,6 @@
+---
+- name: Install packages
+  ansible.builtin.include_tasks: install-packages.yml
+
+- name: Configure fastfetch
+  ansible.builtin.include_tasks: fastfetch.yml

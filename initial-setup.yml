@@ -1,0 +1,8 @@
+---
+- name: Initial Setup
+  hosts: localhost
+  become: true
+  become_user: root
+  roles:
+    - roles/initial_setup
+    
